@@ -1,10 +1,3 @@
-/*
- * wifi_info.h
- *
- *  Created on: 2020-05-15
- *      Author: Mixiaoxiao (Wang Bin)
- */
-
 #ifndef WIFI_INFO_H_
 #define WIFI_INFO_H_
 
@@ -14,14 +7,12 @@
 #include <WiFi.h>
 #endif
 
-const char *ssid = "Irkum_EXT_2.4";
-const char *password = "konsolkowo";
+void wifiConnect() {
+	WiFi.hostname("RollerBlind");
 
-void wifi_connect() {
-	WiFi.persistent(false);
-	WiFi.mode(WIFI_STA);
-	WiFi.setAutoReconnect(true);
-	WiFi.begin(ssid, password);
+	WiFiManager wifiManager;
+    wifiManager.autoConnect("Roller Blind Configuration");
+
 	Serial.println("WiFi connecting...");
 	while (!WiFi.isConnected()) {
 		delay(100);
@@ -31,4 +22,4 @@ void wifi_connect() {
 	Serial.printf("WiFi connected, IP: %s\n", WiFi.localIP().toString().c_str());
 }
 
-#endif /* WIFI_INFO_H_ */
+#endif
